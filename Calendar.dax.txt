@@ -1,0 +1,17 @@
+// DAX for Date Table (from Adam Saxton, Twitter: @awsaxton,  Web: https://guyinacube.com/)
+//
+Calendar = 
+VAR _calendar =
+    CALENDAR (MIN('Confirmed'[Date]), 
+              MAX('Confirmed'[Date]))
+RETURN
+    ADDCOLUMNS (
+        _calendar,
+        "Year", YEAR ( [Date] ),
+        "MonthNumber", MONTH ( [Date] ),
+        "Month", FORMAT ( [Date], "mmmm" ),
+        "Quarter", "QTR " & FORMAT ( [Date], "Q" ),
+        "QuaterNumber", FORMAT ( [Date], "Q" ),
+        "MonthYearNumber", FORMAT([Date], "yy mm"),
+        "Month Year", FORMAT([Date], "mmm yyyy")
+    )
